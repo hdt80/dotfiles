@@ -1,0 +1,40 @@
+#!/bin/bash
+
+BATTERY=0
+BATTERY_INFO=$(acpi -b | grep "Battery ${BATTERY}")
+BATTERY_STATE=$(echo "${BATTERY_INFO}" | grep -wo "Full\|Charging\|Discharging")
+BATTERY_POWER=$(echo "${BATTERY_INFO}" | grep -o '[0-9]\+%' | tr -d '%')
+
+URGENT_VALUE=10
+
+DEC=$(awk -v m=$BATTERY_POWER 'BEGIN { print m / 100 }')
+
+if [[ "$BATTERY_POWER" -gt 50 ]]; then
+	GG=255
+	RR=$(awk -v v=$DEC 'BEGIN { printf "%3.0f", 255 * (2 * (1 - v))}')
+else
+	GG=$(awk -v v=$DEC 'BEGIN { printf "%3.0f", 255 * 2 * v}')
+	RR=255
+fi
+
+BATTERY_ICON="&#xf24"
+BATTERY_ICON_END=$(awk -v v=$DEC 'BEGIN { printf "%1.0f",  4 - ((v * 100) / 25)}')
+BATTERY_ICON+="${BATTERY_ICON_END};"
+
+if [[ "${BATTERY_STATE}" = "Charging" ]]; then
+  echo "${BATTERY_ICON} ${BATTERY_POWER}%+"
+  echo "${BATTERY_ICON} ${BATTERY_POWER}%+"
+  printf "#%02x%02x00" "$RR" "$GG"
+elif [[ "${BATTERY_STATE}" = "Discharging" ]]; then
+  echo "${BATTERY_ICON} ${BATTERY_POWER}%-"
+  echo "${BATTERY_ICON} ${BATTERY_POWER}%-"
+  printf "#%02x%02x00" "$RR" "$GG"
+else
+  echo "${BATTERY_ICON} ${BATTERY_POWER}%"
+  echo "${BATTERY_ICON} ${BATTERY_POWER}%"
+  echo ""
+fi
+
+if [[ "${BATTERY_POWER}" -le "${URGENT_VALUE}" ]]; then
+  exit 33
+fi

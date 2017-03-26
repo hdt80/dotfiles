@@ -1,0 +1,15 @@
+#!/bin/bash
+
+BATTERY_POWER=$1
+BATTERY_COLOR=
+
+DEC=$(awk -v m=$BATTERY_POWER 'BEGIN { print m / 100 }')
+
+if [[ "$BATTERY_POWER" -gt  50 ]]; then
+	GG=255
+	RR=$(awk -v v=$DEC 'BEGIN { printf "%3.0f", 255 * (2 * (1 - v))}')
+else
+	GG=$(awk -v v=$DEC 'BEGIN { printf "%3.0f", 255 * 2 * v}')
+	RR=255
+fi
+printf "%x%x00\n" "$RR" "$GG"

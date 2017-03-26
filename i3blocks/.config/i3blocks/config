@@ -1,0 +1,81 @@
+#
+# Separator global settings
+#
+
+full_text=|
+align=center
+color=#666666
+separator=false
+separator_block_width=7
+
+#
+# Blocklet defaults
+# By default the command is the same as the block name
+#
+
+command=~/.config/i3blocks/blocklets/$BLOCK_NAME
+markup=pango
+
+####
+
+# Audio volume percentage
+[audio]
+label=&#xf027;
+interval=1
+color=#2980b9
+
+[separator]
+
+# Battery percentage
+[battery]
+instance=0
+interval=5
+
+[separator]
+
+# Date and time
+[datetime]
+label=&#xf073;
+interval=1
+color=#ffffff
+
+[separator]
+
+# Wifi IP
+[iface]
+label=&#xf1eb;
+interval=5
+color=#ffffff
+
+# WiFi strength
+[wifi]
+label=
+instance=wlp2s0
+interval=5
+color=#ffffff
+
+[separator]
+
+# Cpu usage percentage
+[cpu_usage]
+label=&#xf085;
+interval=1
+min_width=X:100.00%
+color=#ffffff
+
+# How much memory is being used
+[memory]
+label=&#xf1c0;
+instance=mem;used
+interval=1
+color=#ffffff
+min_width=XXXXXXXX
+
+[separator]
+
+# How many updates are availible
+[update_count]
+label=&#xf148;
+interval=500
+color=#ffffff
+min_width=XXXX
