@@ -1,16 +1,5 @@
 " Set options before loading plugins
 
-" =============================================================================
-" You complete me options
-"
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
-let g:ycm_global_ycm_extra_conf = '~/code/.ycm_extra_conf.py'
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_show_diagnostic_ui = 0
-
 " ==============================================================================
 " Theme options
 "
@@ -22,23 +11,41 @@ let g:molokai_original = 1
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" All plugin loading should go inbetween the begin and end
-" All plugins go here
+
+" At this point plugins can be loaded, now that #begin() has been called. Once
+" #end() is called no more plugins can be loaded. Options for each plugin are
+" below each line
+
+" Plugin manager used
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/syntastic'
+
+" Adds text objects for surrounding words
 Plugin 'tpope/vim-surround'
-"Plugin 'Valloric/YouCompleteMe'
+
+" Better cpp syntax
 Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" Adds aditional text objects
+Plugin 'wellle/targets.vim'
+
+" Syntax highlighting for GLSL
+Plugin 'tikhomirov/vim-glsl'
+
+"
+Plugin 'rhysd/clever-f.vim'
+let g:clever_f_across_no_line	= 1
+let g:clever_f_timeout_ms		= 3000
+
+"
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Themes
 Plugin 'vim-scripts/darkspectrum'
 
 " No more plugins after this
 call vundle#end()
-filetype plugin indent on
 
-" Turn off the red highlighting in YCM
-highlight YcmErrorLine guibg=#000000 
+filetype plugin indent on
 
 " =============================================================================
 " Key remaps
@@ -49,6 +56,9 @@ let mapleader="\<Space>" " Remap the leader key to space
 " Switch between the last two files:
 nnoremap <leader><leader> <c-^>
 
+" Toggle fold
+nnoremap <leader>a za
+
 " Recopy what's pasted
 xnoremap p pgvy
 
@@ -57,6 +67,7 @@ command W w
 command Wq wq
 command Q q
 command WQ wq
+
 
 " =============================================================================
 " Window management
@@ -83,6 +94,7 @@ map <leader>j :call WinMove('j')<cr>
 
 " Close window
 map <leader>wc :wincmd q<cr>
+
 " Window rotate
 map <leader>wr <C-W>r
 
@@ -96,11 +108,14 @@ map <leader>L :wincmd L<cr>
 " Settings
 " =============================================================================
 
+" Display settings
 set ruler	        " Show cursor
 set incsearch       " Do incremental search
 set history=100     " Save more than 8 commands
 set showcmd         " Show incomplete commands down at the bottom
 set colorcolumn=81  " One off as it's the limit, not the barrier
+
+set number relativenumber	" Show line numbers, but relative on current line
 
 " Disable backup files
 set noswapfile
@@ -119,8 +134,13 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+set cino=N-s			" Disable cpp namespace indentation
 
 set list listchars=tab:\ \ ,trail:.	" Display tabs and trailing spaces visually
+
+" Change folded background color to be light grey
+hi Folded ctermbg=DarkGray ctermfg=LightBlue
+hi LineNr ctermfg=DarkGray
 
 " Start scrolling when we're getting close to ends of screens
 set scrolloff=10
