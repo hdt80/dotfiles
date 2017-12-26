@@ -60,10 +60,10 @@ floating_modifier $mod
 ################################################################################
 
 # Make the currently focused window the scratchpad
-bindsym $mod+Shift+m move scratchpad
+bindsym $mod+Shift+semicolon move scratchpad
 
 # Toggle the visiblilty of a scratchpad
-bindsym $mod+m scratchpad show
+bindsym $mod+semicolon scratchpad show
 
 # By toggling the floating propery of a window we can make the scratch pad return to normal
 bindsym $mod+u floating toggle
@@ -125,7 +125,7 @@ set $work9 "9: &#xf075;"
 # Music
 set $work10 "10: &#xf04b;"
 
-# Switch between workspaces (Think cntl + tab of Windows)
+# Switch between workspaces (Think alt + tab of Windows)
 bindsym $mod+Tab workspace back_and_forth
 
 # switch to workspace
@@ -232,26 +232,26 @@ mode "$quick_launch" {
 
 # Put all the status icons and such in the top
 bar {
-		# Put all the icons here
-        tray_output primary
-		# At the top
-		position top
-		# Have the status bar up here
-        status_command i3blocks
-		# No workspace buttons, that's only for the bottom bar
-		workspace_buttons no
+	# Put all the icons here
+    tray_output none
+	# At the top
+	position top
+	# Have the status bar up here
+    status_command i3blocks
+	# No workspace buttons, that's only for the bottom bar
+	workspace_buttons no
 
-		colors {
-			# Settings		outline		bg		text
-			statusline		#999999
-			background		#131d24
+	colors {
+		# Settings		outline		bg		text
+		statusline		#999999
+		background		#131d24
 
-			focused_workspace	$FOCUS	$UNFOCUS $FOCUS
-			active_workspace	#232d34	#232d34	#999999
-			inactive_workspace	#131d24	#131d24	#999999
-			urgent_workspace	#999999	#a8a8a8	#e80000
-			binding_mode		$base04	$base02	$base07
-		}
+		focused_workspace	$FOCUS	$UNFOCUS $FOCUS
+		active_workspace	#232d34	#232d34	#999999
+		inactive_workspace	#131d24	#131d24	#999999
+		urgent_workspace	#999999	#a8a8a8	#e80000
+		binding_mode		$base04	$base02	$base07
+	}
 }
 
 # While only having the windows at the bottom
@@ -259,7 +259,7 @@ bar {
 	# On the bottom
 	position bottom
 	# Don't have any status icons
-	tray_output none
+	tray_output primary
 	# No different mode indicator, just the top
 	binding_mode_indicator no
 
@@ -277,3 +277,5 @@ bar {
 exec compton -b
 
 for_window [class="Augmentum"] floating enabled
+for_window [class="Conky"] floating enabled
+no_focus [class="Conky"]

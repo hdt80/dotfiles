@@ -2,6 +2,8 @@
 
 font = xos4 Terminus 14
 
+scrollback_lines = 100000
+
 [colors]
 
 # special

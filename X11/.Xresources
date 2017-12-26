@@ -2,8 +2,8 @@
 ! Rofi
 !
 
-rofi.color-window: argb: A6494949
-rofi.color-normal: #7a7979, #000000, #7a7979, #b5b5b5, #000000
+rofi.color-window:argb:A6494949
+rofi.color-normal:#7a7979, #000000, #7a7979, #b5b5b5, #000000
 
 !
 ! Colors
