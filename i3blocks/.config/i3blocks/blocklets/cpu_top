@@ -1,0 +1,24 @@
+#!/bin/bash
+
+TOP=`ps -eo pcpu,args --sort=pcpu --headers | tail -n 1`
+
+# Split into a space deliminated array
+# 0: CPU usage
+# 1: Process name
+#>2: Process arguments
+IFS=' ' read -ra TOP <<< "$TOP"
+
+# Split the process name to get the process name, not the path
+IFS='/' read -ra PROC <<< "${TOP[1]}"
+
+# -1 is the last argument, Bash is so great
+echo "${PROC[-1]}"
+
+# Concat the args into one var
+for ((i=2;i<"${#TOP[@]}";i++)); do
+	ARGS+="${TOP[i]} "
+done
+
+echo "${TOP[0]}"
+echo "${TOP[1]}"
+echo $ARGS

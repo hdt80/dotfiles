@@ -1,16 +1,14 @@
-################################################################################
-# Colors
-################################################################################
-
-set $FOCUS   #989898
+###
+## This is a generated file. Any changes will be lost when this file is
+## next produced. Make changes in the config.in file
+###
+set $FOCUS #989898
 set $UNFOCUS #3c3b37
-
 set $bg-color #2f343f
 set $inactive-bg-color #2f343f
 set $text-color #f3f4f5
 set $inactive-text-color #676e7d
 set $urgent-bg-color #e5e935
-
 set $base00 #101218
 set $base01 #1f222d
 set $base02 #252936
@@ -27,108 +25,51 @@ set $base0C #97e0ff
 set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
-
 set $border #252936
-
-#                        Background  Border   Text     Indicator
-client.focused           $base02     $base03  $base04  $base00
-client.unfocused         $base00     $base02  $base04  $base02
-client.focused_inactive  $base00     $base00  $base00  $base00
-client.urgent            $base00     $base00  $base00  $base00
-
-################################################################################
-# Settings
-################################################################################
-
+client.focused $base02 $base03 $base04 $base00
+client.unfocused $base00 $base02 $base04 $base02
+client.focused_inactive $base00 $base00 $base00 $base00
+client.urgent $base00 $base00 $base00 $base00
 new_window pixel 4
 new_float pixel 4
-
 set $default_gaps_inner 8
 set $default_gaps_outer 0
-
-# Use the windows key for hotkeys
 set $mod Mod4
-
-# Font used by i3
 font pango:xos4 Terminus 18px
-
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-################################################################################
-# Scratchpad hotkeys
-################################################################################
-
-# Make the currently focused window the scratchpad
+exec compton -b
+for_window [class="Augmentum"] floating enabled
 bindsym $mod+Shift+semicolon move scratchpad
-
-# Toggle the visiblilty of a scratchpad
 bindsym $mod+semicolon scratchpad show
-
-# By toggling the floating propery of a window we can make the scratch pad return to normal
 bindsym $mod+u floating toggle
-
-################################################################################
-# Workspace management hotkeys
-################################################################################
-
-# Change what window has focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# Move focused window around the current workspace
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# Change where new windows will be created in the current workspace if using tiling mode
 bindsym $mod+b split h
 bindsym $mod+v split v
-
-# Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# Toggle tiling / floating
 bindsym $mod+Shift+p floating toggle
-
-# Change focus between tiling / floating windows
 bindsym $mod+p focus mode_toggle
-
-# focus the parent container
 bindsym $mod+a focus parent
-# focus the child container
 bindsym $mod+c focus child
-
-# Workspace variables to make changing them easier
-
-# Terminal
 set $work1 "1: &#xf120;"
-# Code
 set $work2 "2: &#xf121;"
 set $work3 "3: "
-# Firefox
 set $work4 "4: &#xf269;"
 set $work5 "5: "
 set $work6 "6: "
 set $work7 "7: "
 set $work8 "8: "
-# Comm
 set $work9 "9: &#xf075;"
-# Music
 set $work10 "10: &#xf04b;"
-
-# Switch between workspaces (Think alt + tab of Windows)
 bindsym $mod+Tab workspace back_and_forth
-
-# switch to workspace
 bindsym $mod+1 workspace $work1
 bindsym $mod+2 workspace $work2
 bindsym $mod+3 workspace $work3
@@ -139,8 +80,6 @@ bindsym $mod+7 workspace $work7
 bindsym $mod+8 workspace $work8
 bindsym $mod+9 workspace $work9
 bindsym $mod+0 workspace $work10
-
-# move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $work1
 bindsym $mod+Shift+2 move container to workspace $work2
 bindsym $mod+Shift+3 move container to workspace $work3
@@ -151,131 +90,99 @@ bindsym $mod+Shift+7 move container to workspace $work7
 bindsym $mod+Shift+8 move container to workspace $work8
 bindsym $mod+Shift+9 move container to workspace $work9
 bindsym $mod+Shift+0 move container to workspace $work10
-
-################################################################################
-# Keybinds
-################################################################################
-
-# Start a terminal
 bindsym $mod+Return exec termite
-
-# Kill focused window
 bindsym $mod+Shift+q kill
-
-# Rofi launcher
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 470 -opacity "85" -font "Terminus 16"
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# Quick kill the focused window
+bindsym $mod+y exec rofi -show run -lines 3 -eh 2 -width 100 -padding 470 -opacity "85" -font "Terminus 16"
+bindsym $mod+Shift+c exec pushd /home/hdt/.config/i3/; exec ./abuse-config.sh; exec popd; reload
+bindsym $mod+Shift+r exec pushd /home/hdt/.config/i3/; exec ./abuse-config.sh; exec popd; restart
 bindsym $mod+Shift+i exec "i3-msg exit"
-
-# Lock the system
 bindsym $mod+shift+x exec i3lock-fancy
-
-# Recreate the stow dotfiles from the dotfiles repo
 bindsym $mod+shift+t exec ~/dotfiles/install.sh
-
-# Screenshot
 bindsym --release Print exec scrot -s '~/scrots/%Y-%m-%d_$wx$h.png'
-
-################################################################################
-# Modes
-################################################################################
-
-# Sytem management
 set $sys_mang [r]eboot [s]hutdown [e]xit i3
 bindsym $mod+Shift+e mode "$sys_mang"
 mode "$sys_mang" {
-	bindsym r exec reboot; mode "default"
-	bindsym s exec poweroff; mode "default"
-	bindsym e exec i3-msg exit; mode "default"
-
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+ bindsym r exec reboot; mode "default"
+ bindsym s exec poweroff; mode "default"
+ bindsym e exec i3-msg exit; mode "default"
+ bindsym Return mode "default"
+ bindsym Escape mode "default"
+ bindsym q mode "default"
 }
-
-# Resize mode
 bindsym $mod+r mode "resize"
 mode "resize" {
-	# These bindings trigger as soon as you enter the resize mode
-	bindsym h resize shrink width 10 px or 10 ppt
-	bindsym j resize grow height 10 px or 10 ppt
-	bindsym k resize shrink height 10 px or 10 ppt
-	bindsym l resize grow width 10 px or 10 ppt
-	
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+ bindsym h resize shrink width 10 px or 10 ppt
+ bindsym j resize grow height 10 px or 10 ppt
+ bindsym k resize shrink height 10 px or 10 ppt
+ bindsym l resize grow width 10 px or 10 ppt
+ bindsym Return mode "default"
+ bindsym Escape mode "default"
+ bindsym q mode "default"
 }
-
-# Quick launch mode
-set $quick_launch Launch: [f]irefox, [c]hrome
+set $quick_launch Launch: [c]hrome, [s]team
 bindsym $mod+q mode "$quick_launch"
 mode "$quick_launch" {
-	# Quick keys for quick lauching apps
-	bindsym f exec "firefox"; mode "default"
-	bindsym c exec "chromium"; mode "default"
-
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym q mode "default"
+ bindsym c exec "chromium"; mode "default"
+ bindsym s exec "steam"; mode "default"
+ bindsym Return mode "default"
+ bindsym Escape mode "default"
+ bindsym q mode "default"
 }
-
-################################################################################
-# i3bar configs
-################################################################################
-
-# Put all the status icons and such in the top
 bar {
-	# Put all the icons here
-    tray_output none
-	# At the top
-	position top
-	# Have the status bar up here
-    status_command i3blocks
-	# No workspace buttons, that's only for the bottom bar
-	workspace_buttons no
-
-	colors {
-		# Settings		outline		bg		text
-		statusline		#999999
-		background		#131d24
-
-		focused_workspace	$FOCUS	$UNFOCUS $FOCUS
-		active_workspace	#232d34	#232d34	#999999
-		inactive_workspace	#131d24	#131d24	#999999
-		urgent_workspace	#999999	#a8a8a8	#e80000
-		binding_mode		$base04	$base02	$base07
-	}
+ id bar-main # Main bar
+ position bottom # Main bar on bottom
+ tray_output primary # This bar has the system tray
+ binding_mode_indicator no # Dont show what mode i3 is in
+ bindsym button1 nop # Disable clicking on workspace tabs
+ colors { 
+ statusline #999999 
+ background #131d24 
+ focused_workspace $FOCUS $UNFOCUS $FOCUS 
+ active_workspace #232d34 #232d34 #999999 
+ inactive_workspace #131d24 #131d24 #999999 
+ urgent_workspace #999999 #a8a8a8 #e80000 
+ binding_mode $base04 $base02 $base07 
+ }
 }
-
-# While only having the windows at the bottom
 bar {
-	# On the bottom
-	position bottom
-	# Don't have any status icons
-	tray_output primary
-	# No different mode indicator, just the top
-	binding_mode_indicator no
-
-	colors {
-		statusline #999999
-		background #131d24
-
-		focused_workspace $FOCUS $UNFOCUS $FOCUS
-		active_workspace #232d34 @232d34 #999999
-		inactive_workspace #131d24 #131d24 #999999
-		urgent_workspace #999999 #999999 #b33a3a
-	}
+ id bar-general
+    tray_output none # Disable system tray
+ position top # Detail bars go at the top
+ workspace_buttons no # Disable workspace buttons
+    status_command i3blocks -c $HOME/.config/i3blocks/general
+ colors { 
+ statusline #999999 
+ background #131d24 
+ focused_workspace $FOCUS $UNFOCUS $FOCUS 
+ active_workspace #232d34 #232d34 #999999 
+ inactive_workspace #131d24 #131d24 #999999 
+ urgent_workspace #999999 #a8a8a8 #e80000 
+ binding_mode $base04 $base02 $base07 
+ }
 }
-
-exec compton -b
-
-for_window [class="Augmentum"] floating enabled
-for_window [class="Conky"] floating enabled
-no_focus [class="Conky"]
+bar {
+ id bar-stats
+    tray_output none # Disable system tray
+ position top # Detail bars go at the top
+ workspace_buttons no # Disable workspace buttons
+ mode invisible # Start as invisible
+    status_command i3blocks -c $HOME/.config/i3blocks/detail_process
+ colors { 
+ statusline #999999 
+ background #131d24 
+ focused_workspace $FOCUS $UNFOCUS $FOCUS 
+ active_workspace #232d34 #232d34 #999999 
+ inactive_workspace #131d24 #131d24 #999999 
+ urgent_workspace #999999 #a8a8a8 #e80000 
+ binding_mode $base04 $base02 $base07 
+ }
+}
+set $bar_select Bar mode: [d]efault [s]tats
+bindsym $mod+d mode "$bar_select"
+mode "$bar_select" {
+ bindsym d bar mode dock bar-main \ ;bar mode dock bar-general \ ;bar mode invisible bar-stats \ ;mode "default"
+ bindsym s bar mode dock bar-main \ ;bar mode dock bar-stats \ ;bar mode invisible bar-general \ ;mode "default"
+ bindsym Return mode "default"
+ bindsym Escape mode "default"
+ bindsym q mode "default"
+}

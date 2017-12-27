@@ -43,4 +43,4 @@ if [ -s ~/.Xmodmap ];  then
 fi
 
 # Start i3
-exec i3 --shmlog-size=26214400 && exec conky && exec xbindkeys
+exec i3 --shmlog-size=26214400

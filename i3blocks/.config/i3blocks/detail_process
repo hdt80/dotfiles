@@ -1,0 +1,35 @@
+#
+# Separator global settings
+#
+
+full_text=|
+align=center
+color=#666666
+separator=false
+separator_block_width=7
+
+#
+# Blocklet defaults
+# By default the command is the same as the block name
+#
+
+command=~/.config/i3blocks/blocklets/$BLOCK_NAME
+markup=pango
+
+####
+
+# Cpu usage percentage
+[cpu_usage]
+label=&#xf085;
+interval=1
+min_width=X:100.00%
+color=#ffffff
+
+# How much memory is being used
+[memory]
+label=&#xf1c0;
+instance=mem;used
+interval=1
+color=#ffffff
+min_width=XXXXXXXX
+
