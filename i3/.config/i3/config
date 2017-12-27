@@ -37,7 +37,7 @@ set $default_gaps_outer 0
 set $mod Mod4
 font pango:xos4 Terminus 18px
 floating_modifier $mod
-exec compton -b
+exec --no-startup-id compton -b
 for_window [class="Augmentum"] floating enabled
 bindsym $mod+Shift+semicolon move scratchpad
 bindsym $mod+semicolon scratchpad show
@@ -93,8 +93,8 @@ bindsym $mod+Shift+0 move container to workspace $work10
 bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 bindsym $mod+y exec rofi -show run -lines 3 -eh 2 -width 100 -padding 470 -opacity "85" -font "Terminus 16"
-bindsym $mod+Shift+c exec pushd /home/hdt/.config/i3/; exec ./abuse-config.sh; exec popd; reload
-bindsym $mod+Shift+r exec pushd /home/hdt/.config/i3/; exec ./abuse-config.sh; exec popd; restart
+bindsym $mod+Shift+c exec /home/hdt/.config/i3/abuse-config.sh
+bindsym $mod+Shift+r exec /home/hdt/.config/i3/abuse-config.sh 1
 bindsym $mod+Shift+i exec "i3-msg exit"
 bindsym $mod+shift+x exec i3lock-fancy
 bindsym $mod+shift+t exec ~/dotfiles/install.sh
@@ -180,8 +180,8 @@ bar {
 set $bar_select Bar mode: [d]efault [s]tats
 bindsym $mod+d mode "$bar_select"
 mode "$bar_select" {
- bindsym d bar mode dock bar-main \ ;bar mode dock bar-general \ ;bar mode invisible bar-stats \ ;mode "default"
- bindsym s bar mode dock bar-main \ ;bar mode dock bar-stats \ ;bar mode invisible bar-general \ ;mode "default"
+ bindsym d bar mode dock bar-main ;bar mode dock bar-general ;bar mode invisible bar-stats ;mode "default"
+ bindsym s bar mode dock bar-main ;bar mode dock bar-stats ;bar mode invisible bar-general ;mode "default"
  bindsym Return mode "default"
  bindsym Escape mode "default"
  bindsym q mode "default"

@@ -1,4 +1,3 @@
-
 #include "warning"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +61,7 @@ floating_modifier $mod
 // Process settings
 ////////////////////////////////////////////////////////////////////////////////
 
-exec compton -b
+exec --no-startup-id compton -b
 
 // Put a game I'm working on as floating
 for_window [class="Augmentum"] floating enabled
@@ -174,23 +173,17 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 // Rofi launcher
-bindsym $mod+y exec rofi -show run -lines 3 -eh 2 -width 100 -padding 470 -opacity "85" -font "Terminus 16"
+bindsym $mod+y exec \
+	rofi -show run -lines 3 -eh 2 -width 100 \
+	-padding 470 -opacity "85" -font "Terminus 16"
 
 // Reload the configuration file
-bindsym $mod+Shift+c \
-	exec pushd /home/hdt/.config/i3/; \
-	exec ./abuse-config.sh; \
-	exec popd; \
-	reload
+bindsym $mod+Shift+c exec /home/hdt/.config/i3/abuse-config.sh
 
 // Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r  \
-	exec pushd /home/hdt/.config/i3/; \
-	exec ./abuse-config.sh; \
-	exec popd; \
-	restart
+bindsym $mod+Shift+r exec /home/hdt/.config/i3/abuse-config.sh 1
 
-// Quick kill the focused window
+// Kill i3
 bindsym $mod+Shift+i exec "i3-msg exit"
 
 // Lock the system
@@ -249,6 +242,7 @@ mode "$quick_launch" {
 // i3bar configs
 ////////////////////////////////////////////////////////////////////////////////
 
+// __NL__ is turned into a new line during preprocessing
 #define BAR_COLORS colors { __NL__ \
 		statusline		#999999	__NL__ \
 		background		#131d24	__NL__ \
@@ -261,9 +255,8 @@ mode "$quick_launch" {
 
 // Main bar at the bottom. Has the workspaces and system tray
 bar {
-// {{{
 	id bar-main			# Main bar
-
+// {{{
 	position bottom				# Main bar on bottom
 	tray_output primary			# This bar has the system tray
 	binding_mode_indicator no	# Dont show what mode i3 is in
@@ -276,7 +269,6 @@ bar {
 ////////////////////////////////////////////////////////////////////////////////
 // Detail bars
 ////////////////////////////////////////////////////////////////////////////////
-
 
 // Detail bar: General
 //	Is the default bar, containing at a glance info
@@ -321,15 +313,15 @@ set $bar_select Bar mode: [d]efault [s]tats
 bindsym $mod+d mode "$bar_select"
 mode "$bar_select" {
 	// Default
-	bindsym d bar mode dock bar-main	\\
-		;bar mode dock bar-general		\\
-		;bar mode invisible bar-stats	\\
+	bindsym d bar mode dock bar-main	\
+		;bar mode dock bar-general		\
+		;bar mode invisible bar-stats	\
 		;mode "default"
 
 	// Process stats
-	bindsym s bar mode dock bar-main	\\
-		;bar mode dock bar-stats		\\
-		;bar mode invisible bar-general	\\
+	bindsym s bar mode dock bar-main	\
+		;bar mode dock bar-stats		\
+		;bar mode invisible bar-general	\
 		;mode "default"
 
 	bindsym Return mode "default"
