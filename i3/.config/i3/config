@@ -4,11 +4,6 @@
 ###
 set $FOCUS #989898
 set $UNFOCUS #3c3b37
-set $bg-color #2f343f
-set $inactive-bg-color #2f343f
-set $text-color #f3f4f5
-set $inactive-text-color #676e7d
-set $urgent-bg-color #e5e935
 set $base00 #101218
 set $base01 #1f222d
 set $base02 #252936

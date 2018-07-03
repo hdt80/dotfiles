@@ -25,6 +25,22 @@ interval=1
 min_width=X:100.00%
 color=#ffffff
 
+[cpu_top]
+label=
+interval=1
+instance=name;pcpu
+color=#ffffff
+min_width=168
+
+[cpu_top]
+label=
+interval=1
+instance=perc;pcpu
+color=#ffffff
+min_width=100%
+
+[separator]
+
 # How much memory is being used
 [memory]
 label=&#xf1c0;
@@ -33,3 +49,16 @@ interval=1
 color=#ffffff
 min_width=XXXXXXXX
 
+[cpu_top]
+label=
+interval=1
+instance=name;size
+color=#ffffff
+min_width=168
+
+[cpu_top]
+label=
+interval=1
+instance=perc;size
+color=#ffffff
+min_width=100%

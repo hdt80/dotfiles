@@ -63,11 +63,21 @@ nnoremap <leader>a za
 xnoremap p pgvy
 
 " Bind keys I often accidentally hit shift on
-command W w
-command Wq wq
-command Q q
-command WQ wq
+command! W w
+command! Wq wq
+command! Q q
+command! WQ wq
 
+" ============================================================================== 
+" Tab management
+" ============================================================================== 
+
+" Space D to open a new tab and explore with newtr
+nnoremap <leader>d :Te<cr>
+
+noremap gc :tabclose<cr>
+
+set showtabline=2 " Always show the tabline
 
 " =============================================================================
 " Window management
@@ -142,7 +152,7 @@ set list listchars=tab:\ \ ,trail:.	" Display tabs and trailing spaces visually
 hi Folded ctermbg=DarkGray ctermfg=LightBlue
 hi LineNr ctermfg=DarkGray
 
-" Start scrolling when we're getting close to ends of screens
+" Start scrolling when getting close to the edge of the screen
 set scrolloff=10
 set sidescrolloff=15
 set sidescroll=1
