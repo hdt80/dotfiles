@@ -1,6 +1,9 @@
 [options]
 
-font = xos4 Terminus 14
+font = Terminus 14
+#font = Terminus (TTF) 12
+#font = Roboto Mono 12
+#font = Inconsolata 14
 
 scrollback_lines = 100000
 

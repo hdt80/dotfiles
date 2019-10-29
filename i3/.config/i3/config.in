@@ -46,10 +46,13 @@ set $default_gaps_outer 0
 set $mod Mod4
 
 // Font used by i3
-font pango:xos4 Terminus 18px
+font pango:Terminus 14
 
 // Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+// Stack windows left to right
+default_orientation horizontal
 
 ////////////////////////////////////////////////////////////////////////////////
 // Process settings
@@ -70,7 +73,7 @@ bindsym $mod+Shift+semicolon move scratchpad
 // Toggle the visiblilty of a scratchpad
 bindsym $mod+semicolon scratchpad show
 
-// By toggling the floating propery of a window we can make the scratch pad return to normal
+// By toggling the floating propery of a window we can make a scratch pad return to normal
 bindsym $mod+u floating toggle
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,10 +98,6 @@ bindsym $mod+v split v
 
 // Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-// Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 // Toggle tiling / floating
 bindsym $mod+Shift+p floating toggle
@@ -231,6 +230,20 @@ mode "$quick_launch" {
 	bindsym q mode "default"
 }
 
+// Window layout mode
+set $window_layout Layout: [h]Stacked, [j]Tabbed, [k]Split V, [l]Split H, [;]Toggle
+bindsym $mod+w mode "$window_layout"
+mode "$window_layout" {
+	bindsym h layout stacked; mode "default"
+	bindsym j layout tabbed; mode "default"
+	bindsym k layout splitv; mode "default"
+	bindsym l layout splith; mode "default"
+	bindsym Colon layout toggle tabbed stacked split
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym q mode "default"
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // i3bar configs

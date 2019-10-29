@@ -30,8 +30,9 @@ new_float pixel 4
 set $default_gaps_inner 8
 set $default_gaps_outer 0
 set $mod Mod4
-font pango:xos4 Terminus 18px
+font pango:Terminus 14
 floating_modifier $mod
+default_orientation horizontal
 exec --no-startup-id compton -b
 for_window [class="Augmentum"] floating enabled
 bindsym $mod+Shift+semicolon move scratchpad
@@ -48,8 +49,6 @@ bindsym $mod+Shift+l move right
 bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 bindsym $mod+Shift+p floating toggle
 bindsym $mod+p focus mode_toggle
 bindsym $mod+a focus parent
@@ -119,6 +118,18 @@ bindsym $mod+q mode "$quick_launch"
 mode "$quick_launch" {
  bindsym c exec "chromium"; mode "default"
  bindsym s exec "steam"; mode "default"
+ bindsym Return mode "default"
+ bindsym Escape mode "default"
+ bindsym q mode "default"
+}
+set $window_layout Layout: [h]Stacked, [j]Tabbed, [k]Split V, [l]Split H, [;]Toggle
+bindsym $mod+w mode "$window_layout"
+mode "$window_layout" {
+ bindsym h layout stacked; mode "default"
+ bindsym j layout tabbed; mode "default"
+ bindsym k layout splitv; mode "default"
+ bindsym l layout splith; mode "default"
+ bindsym Colon layout toggle tabbed stacked split
  bindsym Return mode "default"
  bindsym Escape mode "default"
  bindsym q mode "default"

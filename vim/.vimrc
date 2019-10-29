@@ -19,8 +19,17 @@ call vundle#begin()
 " Plugin manager used
 Plugin 'VundleVim/Vundle.vim'
 
+" Auto complete plugin
+"Plugin 'Valloric/YouCompleteMe'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
+"let g:ycm_allow_changing_updatetime = 0
+let g:ycm_confirm_extra_conf = 0
+
 " Adds text objects for surrounding words
 Plugin 'tpope/vim-surround'
+
+" Disable the red text for errors
+highlight YcmErrorSection ctermbg=0
 
 " Better cpp syntax
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -30,14 +39,6 @@ Plugin 'wellle/targets.vim'
 
 " Syntax highlighting for GLSL
 Plugin 'tikhomirov/vim-glsl'
-
-"
-Plugin 'rhysd/clever-f.vim'
-let g:clever_f_across_no_line	= 1
-let g:clever_f_timeout_ms		= 3000
-
-"
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Themes
 Plugin 'vim-scripts/darkspectrum'
@@ -67,17 +68,6 @@ command! W w
 command! Wq wq
 command! Q q
 command! WQ wq
-
-" ============================================================================== 
-" Tab management
-" ============================================================================== 
-
-" Space D to open a new tab and explore with newtr
-nnoremap <leader>d :Te<cr>
-
-noremap gc :tabclose<cr>
-
-set showtabline=2 " Always show the tabline
 
 " =============================================================================
 " Window management
@@ -125,7 +115,7 @@ set history=100     " Save more than 8 commands
 set showcmd         " Show incomplete commands down at the bottom
 set colorcolumn=81  " One off as it's the limit, not the barrier
 
-set number relativenumber	" Show line numbers, but relative on current line
+set number " Show line numbers, but relative on current line
 
 " Disable backup files
 set noswapfile

@@ -44,4 +44,5 @@ fi
 
 # Start i3
 exec i3 --shmlog-size=26214400
+#exec cinnamon-session
 #exec /home/hdt/aur_builds/i3/build/i3 --shmlog-size=26214400

@@ -4,4 +4,3 @@ OUTPUT=$(checkupdates | wc -l)
 
 echo $OUTPUT
 echo $OUTPUT
-echo ""

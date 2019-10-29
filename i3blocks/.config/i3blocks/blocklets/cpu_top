@@ -20,10 +20,8 @@ done
 if [[ "${RES[0]}" = "name" ]]; then
 	echo "${PROC[-1]}"
 	echo "${PROC[-1]}"
-	echo ""
 elif [[ "${RES[0]}" = "perc" ]]; then
 	echo "${TOP[0]}%"
 	echo "${TOP[0]}%"
-	echo ""
 fi
 

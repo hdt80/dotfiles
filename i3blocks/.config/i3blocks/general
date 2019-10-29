@@ -20,9 +20,9 @@ markup=pango
 
 # Audio volume percentage
 [audio]
-label=&#xf027;
+label=&#xf027; 
 interval=1
-color=#2980b9
+color=#2980B9
 
 [separator]
 
@@ -35,15 +35,15 @@ interval=5
 
 # Date and time
 [datetime]
-label=&#xf073;
+label=&#xf073; 
 interval=1
-color=#ffffff
+color=#FFFFFF
 
 [separator]
 
 # Wifi IP
 [iface]
-label=&#xf1eb;
+label=&#xf1eb; 
 interval=5
 color=#ffffff
 
@@ -58,14 +58,14 @@ color=#ffffff
 
 # Cpu usage percentage
 [cpu_usage]
-label=&#xf085;
+label=&#xf085; 
 interval=1
 min_width=X:100.00%
 color=#ffffff
 
 # How much memory is being used
 [memory]
-label=&#xf1c0;
+label=&#xf1c0; 
 instance=mem;used
 interval=1
 color=#ffffff
@@ -75,7 +75,7 @@ min_width=XXXXXXXX
 
 # How many updates are availible
 [update_count]
-label=&#xf148;
+label=&#xf148; 
 interval=500
 color=#ffffff
 min_width=XXXX

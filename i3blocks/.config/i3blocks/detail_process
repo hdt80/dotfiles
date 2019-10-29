@@ -20,7 +20,7 @@ markup=pango
 
 # Cpu usage percentage
 [cpu_usage]
-label=&#xf085;
+label=&#xf085; 
 interval=1
 min_width=X:100.00%
 color=#ffffff
@@ -43,7 +43,7 @@ min_width=100%
 
 # How much memory is being used
 [memory]
-label=&#xf1c0;
+label=&#xf1c0; 
 instance=mem;used
 interval=1
 color=#ffffff

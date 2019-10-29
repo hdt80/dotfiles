@@ -24,11 +24,11 @@ BATTERY_ICON+="${BATTERY_ICON_END};"
 if [[ "${BATTERY_STATE}" = "Charging" ]]; then
   echo "${BATTERY_ICON} ${BATTERY_POWER}%+"
   echo "${BATTERY_ICON} ${BATTERY_POWER}%+"
-  printf "#%02x%02x00" "$RR" "$GG"
+  printf "#%02x%02x00\n" "$RR" "$GG"
 elif [[ "${BATTERY_STATE}" = "Discharging" ]]; then
   echo "${BATTERY_ICON} ${BATTERY_POWER}%-"
   echo "${BATTERY_ICON} ${BATTERY_POWER}%-"
-  printf "#%02x%02x00" "$RR" "$GG"
+  printf "#%02x%02x00\n" "$RR" "$GG"
 else
   echo "${BATTERY_ICON} ${BATTERY_POWER}%"
   echo "${BATTERY_ICON} ${BATTERY_POWER}%"

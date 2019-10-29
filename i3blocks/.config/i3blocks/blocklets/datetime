@@ -5,4 +5,3 @@ DATETIME=$(TZ=America/Los_Angeles date "+${FORMAT}")
 
 echo "${DATETIME}"
 echo "${DATETIME}"
-echo ""
